@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using Orion.Windows;
 using Xunit;
 
@@ -15,7 +17,11 @@ public sealed class CatalogRepositoryTests
         Assert.Contains(catalog, entry => entry.Category == "Browsers");
         Assert.Contains(catalog, entry => entry.Category == "Games");
         Assert.Contains(catalog, entry => entry.CanManageWithWinget && entry.InstallType == "winget");
-        Assert.All(catalog.Where(entry => entry.PackageId.StartsWith("com.", StringComparison.Ordinal)), entry => Assert.False(entry.CanManageWithWinget));
+        Assert.All(catalog, entry =>
+        {
+            Assert.True(entry.CanManageWithWinget);
+            Assert.Equal("winget", entry.Source);
+        });
     }
 
     [Fact]
@@ -24,7 +30,7 @@ public sealed class CatalogRepositoryTests
         var catalog = new CatalogRepository().LoadCatalog();
         var openSourceApps = catalog.Where(entry => entry.IsFreeOpenSource).ToList();
 
-        Assert.Equal(100, openSourceApps.Count);
+        Assert.Equal(106, openSourceApps.Count);
         Assert.All(openSourceApps, app =>
         {
             Assert.False(string.IsNullOrWhiteSpace(app.PackageId));

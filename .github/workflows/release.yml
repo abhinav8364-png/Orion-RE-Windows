@@ -32,7 +32,11 @@ jobs:
       - name: Publish standalone x64 executable
         run: dotnet publish Orion.Windows/Orion.Windows.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:AssemblyName=Orion-RE --output artifacts/publish
 
+      - name: Create checksum
+        shell: pwsh
+        run: ((Get-FileHash artifacts/publish/Orion-RE.exe -Algorithm SHA256).Hash.ToLowerInvariant() + '  Orion-RE.exe') | Set-Content artifacts/publish/SHA256SUMS.txt
+
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "${{ inputs.tag }}" artifacts/publish/Orion-RE.exe --repo "${{ github.repository }}" --title "Orion-RE Windows ${{ inputs.tag }}" --generate-notes
+        run: gh release create "${{ inputs.tag }}" artifacts/publish/Orion-RE.exe artifacts/publish/SHA256SUMS.txt LICENSE NOTICE.md THIRD-PARTY-NOTICES.md --repo "${{ github.repository }}" --title "Orion-RE Windows ${{ inputs.tag }}" --generate-notes

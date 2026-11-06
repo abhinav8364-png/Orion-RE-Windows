@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Orion.Windows.Models;

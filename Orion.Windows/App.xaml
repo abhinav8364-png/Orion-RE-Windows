@@ -1,3 +1,5 @@
+<!-- Copyright (C) 2026 Abhinav Krishnan and contributors -->
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
 <Application
     x:Class="Orion.Windows.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

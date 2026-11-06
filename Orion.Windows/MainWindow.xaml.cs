@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Orion.Windows.Models;

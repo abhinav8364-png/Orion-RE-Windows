@@ -4,7 +4,7 @@ Contributions are welcome for the Windows community port.
 
 ## Development expectations
 
-- Keep the app native to Windows 11 and WinUI 3.
+- Keep the app native to Windows and follow the existing WPF architecture.
 - Prefer component-level design over unnecessary abstraction.
 - Document any upstream code or assets reused from Orion in the project documentation.
 - Avoid fabricating API endpoints or catalog schemas.

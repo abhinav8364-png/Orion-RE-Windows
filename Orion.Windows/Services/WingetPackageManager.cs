@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -13,7 +15,7 @@ public interface IWingetPackageManager
 
 public sealed class WingetPackageManager : IWingetPackageManager
 {
-    private static readonly Regex PackageIdPattern = new("^[A-Za-z0-9][A-Za-z0-9._-]*$", RegexOptions.CultureInvariant);
+    private static readonly Regex PackageIdPattern = new("^[A-Za-z0-9][A-Za-z0-9._+-]*$", RegexOptions.CultureInvariant);
 
     public Task<int> InstallAsync(AppCatalogEntry app)
     {
@@ -40,7 +42,13 @@ public sealed class WingetPackageManager : IWingetPackageManager
             UseShellExecute = true,
             WindowStyle = ProcessWindowStyle.Normal
         };
-        startInfo.Arguments = $"{operation} --id {app.PackageId} --exact --source winget --interactive";
+        startInfo.ArgumentList.Add(operation);
+        startInfo.ArgumentList.Add("--id");
+        startInfo.ArgumentList.Add(app.PackageId);
+        startInfo.ArgumentList.Add("--exact");
+        startInfo.ArgumentList.Add("--source");
+        startInfo.ArgumentList.Add("winget");
+        startInfo.ArgumentList.Add("--interactive");
 
         using var process = Process.Start(startInfo)
             ?? throw new Win32Exception("Windows Package Manager could not be started.");

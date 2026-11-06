@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using Orion.Windows;
 using Orion.Windows.Models;
 using Xunit;
@@ -40,6 +42,19 @@ public sealed class WingetPackageManagerTests
         {
             Name = "Invalid listing",
             PackageId = "safe-id | unwanted-command",
+            CanManageWithWinget = true
+        }));
+    }
+
+    [Fact]
+    public async Task InstallAsync_RejectsPackageIdsContainingArguments()
+    {
+        var manager = new WingetPackageManager();
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => manager.InstallAsync(new AppCatalogEntry
+        {
+            Name = "Invalid listing",
+            PackageId = "safe-id --accept-package-agreements",
             CanManageWithWinget = true
         }));
     }

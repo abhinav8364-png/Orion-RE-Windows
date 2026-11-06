@@ -9,9 +9,9 @@ An unofficial, open-source Windows storefront inspired by [Orion Store](https://
 ## What's included
 
 - Dark Windows desktop storefront with search, categories, featured apps, and package details.
-- 100 additional FOSS applications, with license and exact package IDs checked against the Windows Package Manager (`winget`) source.
-- Interactive install and update actions. Orion asks for confirmation, then opens winget so you can review the package and approve its installer prompts. Orion does not silently run installers.
-- Catalog entries without verified package mappings remain non-installable previews.
+- 106 free/open-source apps with license metadata and exact package IDs checked against the Windows Package Manager (`winget`) source.
+- Install and update actions for every catalog entry. Orion asks for confirmation, then opens winget so you can review the package and approve its installer prompts. Orion does not silently run installers.
+- Catalog entries use real package IDs; fictional/demo entries without installable packages have been removed.
 
 The downloadable executable is a self-contained Windows x64 build and does not require a separate .NET runtime. Installing or updating catalog apps requires Windows Package Manager (`winget`), which is included with supported Windows versions.
 
@@ -51,4 +51,4 @@ Orion-RE Windows is an independent community project; it is not affiliated with 
 
 ## License
 
-This project is distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) for attribution and licensing details.
+This project is distributed under GPL-3.0-only. The complete license, third-party notices, source attribution, and catalog provenance are in [LICENSE](LICENSE), [NOTICE.md](NOTICE.md), and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Source corresponding to every executable release is available in this repository at the release's source tag.

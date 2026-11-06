@@ -29,7 +29,6 @@ jq	jqlang.jq	jqlang	Developer	MIT License	jq is a lightweight and flexible comma
 fzf	junegunn.fzf	Junegunn Choi	Developer	MIT	A general-purpose command-line fuzzy finder
 Dolphin	KDE.Dolphin	KDE e.V.	Developer	GPL-2.0-or-later	Dolphin is KDE's file manager that lets you navigate and browse the contents of your hard drives, USB sticks, SD cards, and more. Creating, moving, or deleting files and folders is simple and fast.
 KDE Connect	KDE.KDEConnect	KDE e.V.	Communication	GPL-2.0-or-later	KDE Connect is a project that enables all your devices to communicate with each other. Here's a few things KDE Connect can do:
-Kdenlive	KDE.Kdenlive	KDE e.V.	Creative	GPL-3.0	Kdenlive is an acronym for KDE Non-Linear Video Editor.
 kdevelop	KDE.KDevelop	KDE e.V.	Developer	GPL-2.0-or-later	KDevelop is a Free and Open Source integrated development environment (IDE).
 KDiff3	KDE.KDiff3	KDE e.V.	Developer	GPL-2.0-or-later	KDiff3 is a file and folder diff and merge tool which
 Kile	KDE.Kile	KDE e.V.	Developer	GPL-2.0-or-later	Kile is a user-friendly TeX/LaTeX editor by KDE. Kile gives you the ability to use all the functionality of LaTeX in a graphical interface and has interactive preview mechanisms to readily see the results of editing.
@@ -69,7 +68,6 @@ OpenShot Video Editor	OpenShot.OpenShot	OpenShot Studios, LLC	Creative	GPL-3.0	O
 OpenVPN	OpenVPNTechnologies.OpenVPN	OpenVPN, Inc.	Security	GPL-2.0	OpenVPN provides flexible VPN solutions to secure your data communications, whether it's for Internet privacy, remote access for employees, securing IoT, or for networking Cloud data centers.
 ownCloud	ownCloud.ownCloudDesktop	ownCloud GmbH	Communication	GPL-2.0	The ownCloud Desktop Client is a tool to synchronize files from ownCloud Server with your computer.
 PDFsam Basic	PDFsam.PDFsam	Sober Lemur S.r.l.	Productivity	AGPL-3.0	A free, open source, multi-platform software designed to split, merge, extract pages, mix and rotate PDF files.
-Pinta	Pinta.Pinta	Pinta Community	Creative	MIT	Simple GTK# Paint Program
 pgAdmin 4	PostgreSQL.pgAdmin	The pgAdmin Development Team	Productivity	PostgreSQL	pgAdmin is designed to answer the needs of all users, from writing simple SQL queries to developing complex databases.
 Proton VPN	Proton.ProtonVPN	Proton AG	Security	GPL-3.0	We built ProtonVPN with extra security features to make it better at protecting your privacy than an ordinary VPN.
 PrusaSlicer	Prusa3D.PrusaSlicer	Prusa Research	Creative	AGPL-3.0	PrusaSlicer (formerly known as Slic3r Prusa Edition or Slic3r PE) is our own in-house developed slicer software based on the open-source project Slic3r. PrusaSlicer is an open-source, feature-rich, frequently updated tool that contains everything you need to export the perfect print files for your Original Prusa 3D printer.

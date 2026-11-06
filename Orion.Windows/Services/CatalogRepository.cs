@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Abhinav Krishnan and contributors
+// SPDX-License-Identifier: GPL-3.0-only
 using System.IO;
 using System.Text.Json;
 using Orion.Windows.Models;
@@ -21,122 +23,14 @@ public sealed class CatalogRepository : ICatalogRepository
     {
         var catalog = new List<AppCatalogEntry>
         {
-            new AppCatalogEntry
-            {
-                Name = "Orion Store",
-                PackageId = "com.orion.store",
-                Version = "2.0.0",
-                Publisher = "RookieEnough",
-                Category = "Utility",
-                Rating = "4.9",
-                FileSizeMb = 34,
-                InstallType = "MSIX",
-                AccentColor = "#5B5CEB",
-                Description = "Native storefront client with a secure install flow and transparent metadata.",
-                IsFeatured = true,
-                Source = "Official" 
-            },
-            new AppCatalogEntry
-            {
-                Name = "Aurora Reader",
-                PackageId = "com.aurora.reader",
-                Version = "3.1.2",
-                Publisher = "Northwind Labs",
-                Category = "Productivity",
-                Rating = "4.7",
-                FileSizeMb = 58,
-                InstallType = "EXE",
-                AccentColor = "#27C7A3",
-                Description = "Fast PDF and document reader designed for efficient note-taking and markup.",
-                IsFeatured = true,
-                Source = "Mirror A"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Motion Studio",
-                PackageId = "com.motion.studio",
-                Version = "1.8.4",
-                Publisher = "Luma Forge",
-                Category = "Creative",
-                Rating = "4.8",
-                FileSizeMb = 92,
-                InstallType = "MSIX",
-                AccentColor = "#FF8C42",
-                Description = "Edit videos and create cinematic overlays with device-friendly templates.",
-                Source = "Mirror B"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Terminus Pro",
-                PackageId = "com.terminus.pro",
-                Version = "2.4.0",
-                Publisher = "Open Systems",
-                Category = "Developer",
-                Rating = "4.9",
-                FileSizeMb = 28,
-                InstallType = "ZIP",
-                AccentColor = "#A3E635",
-                Description = "Modern terminal, SSH, and local automation environment built for power users.",
-                IsFeatured = true,
-                Source = "Mirror C"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Cryptid Vault",
-                PackageId = "com.cryptid.vault",
-                Version = "5.2.1",
-                Publisher = "Cipher Works",
-                Category = "Security",
-                Rating = "4.6",
-                FileSizeMb = 46,
-                InstallType = "MSIX",
-                AccentColor = "#4CC9F0",
-                Description = "Encrypted storage and credential management designed for privacy-focused users.",
-                Source = "Mirror D"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Signal Peak",
-                PackageId = "com.signal.peak",
-                Version = "1.0.9",
-                Publisher = "Drift Studio",
-                Category = "Audio",
-                Rating = "4.5",
-                FileSizeMb = 65,
-                InstallType = "EXE",
-                AccentColor = "#FF5D8F",
-                Description = "Compose, master, and produce clean audio mixes with a focused desktop workflow.",
-                Source = "Mirror E"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Atlas Maps",
-                PackageId = "com.atlas.maps",
-                Version = "8.0.3",
-                Publisher = "Northbound",
-                Category = "Travel",
-                Rating = "4.7",
-                FileSizeMb = 71,
-                InstallType = "MSIX",
-                AccentColor = "#5AA9E6",
-                Description = "Interactive planning and route discovery for local and cross-country adventures.",
-                Source = "Mirror F"
-            },
-            new AppCatalogEntry
-            {
-                Name = "Pixel Forge",
-                PackageId = "com.pixel.forge",
-                Version = "2.7.1",
-                Publisher = "Studio Kilo",
-                Category = "Creative",
-                Rating = "4.8",
-                FileSizeMb = 120,
-                InstallType = "EXE",
-                AccentColor = "#F5D76E",
-                Description = "Graphics toolset for image design, icon generation, and publishing-ready output.",
-                IsFeatured = true,
-                Source = "Mirror G"
-            }
+            CreateVerifiedOpenSourceApp("UniGetUI", "Devolutions.UniGetUI", "Devolutions Inc.", "Utilities", "MIT", "A graphical Windows interface for discovering, installing, and updating packages from multiple package managers.", true),
+            CreateVerifiedOpenSourceApp("Xournal++", "Xournal++.Xournal++", "The Xournal++ Team", "Productivity", "GPL-2.0", "Handwritten note-taking application with PDF annotation and stylus support.", true),
+            CreateVerifiedOpenSourceApp("Kdenlive", "KDE.Kdenlive", "KDE e.V.", "Creative", "GPL-3.0", "Open-source non-linear video editor for arranging clips, audio, titles, and effects.", true),
+            CreateVerifiedOpenSourceApp("Tabby", "Eugeny.Tabby", "Tabby Developers", "Developer", "MIT", "Customizable terminal for local shells, SSH connections, and serial sessions.", true),
+            CreateVerifiedOpenSourceApp("KeePass", "DominikReichl.KeePass", "Dominik Reichl", "Security", "GPL-2.0", "Password manager that stores credentials in an encrypted local database."),
+            CreateVerifiedOpenSourceApp("MuseScore", "Musescore.Musescore", "MuseScore BVBA and Others", "Creative", "GPL-3.0 License", "Music notation editor for composing, arranging, and playing back scores."),
+            CreateVerifiedOpenSourceApp("QGIS", "OSGeo.QGIS", "QGIS.org", "Travel", "GPL-2.0", "Open-source geographic information system for viewing, editing, and analyzing map data."),
+            CreateVerifiedOpenSourceApp("Pinta", "Pinta.Pinta", "Pinta Community", "Creative", "MIT", "Simple open-source painting and image-editing application.")
         };
 
         catalog.AddRange(
@@ -200,6 +94,34 @@ public sealed class CatalogRepository : ICatalogRepository
 
         catalog.AddRange(LoadOpenSourceCatalog());
         return catalog;
+    }
+
+    private static AppCatalogEntry CreateVerifiedOpenSourceApp(
+        string name,
+        string packageId,
+        string publisher,
+        string category,
+        string license,
+        string description,
+        bool isFeatured = false)
+    {
+        return new AppCatalogEntry
+        {
+            Name = name,
+            PackageId = packageId,
+            Publisher = publisher,
+            Category = category,
+            License = license,
+            Description = description,
+            Version = "Latest from winget",
+            Rating = string.Empty,
+            FileSizeMb = 0,
+            InstallType = "winget",
+            Source = "winget",
+            CanManageWithWinget = true,
+            IsFreeOpenSource = true,
+            IsFeatured = isFeatured
+        };
     }
 
     private static IReadOnlyList<AppCatalogEntry> LoadOpenSourceCatalog()
