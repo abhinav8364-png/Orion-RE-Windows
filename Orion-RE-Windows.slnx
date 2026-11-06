@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Orion.Tests/Orion.Tests.csproj" />
+  <Project Path="Orion.Windows/Orion.Windows.csproj" />
+</Solution>

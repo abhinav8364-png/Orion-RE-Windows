@@ -1,0 +1,17 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="OrionWindowBrush" Color="#0B1020" />
+    <SolidColorBrush x:Key="OrionSurfaceBrush" Color="#121A2B" />
+    <SolidColorBrush x:Key="OrionSurfaceRaisedBrush" Color="#192338" />
+    <SolidColorBrush x:Key="OrionHeroBrush" Color="#151F33" />
+    <SolidColorBrush x:Key="OrionBorderBrush" Color="#26334A" />
+    <SolidColorBrush x:Key="OrionBorderStrongBrush" Color="#43516D" />
+    <SolidColorBrush x:Key="OrionHoverBrush" Color="#202D43" />
+    <SolidColorBrush x:Key="OrionAccentBrush" Color="#C7F14A" />
+    <SolidColorBrush x:Key="OrionAccentSoftBrush" Color="#26351F" />
+    <SolidColorBrush x:Key="OrionTextBrush" Color="#F3F6FC" />
+    <SolidColorBrush x:Key="OrionSubtleTextBrush" Color="#9AA8C0" />
+
+</ResourceDictionary>
