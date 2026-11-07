@@ -25,6 +25,7 @@
 ## [Unreleased]
 
 ### Added
+- Added a custom Orion orbit icon for the app window, taskbar, and executable.
 - Initial Windows solution scaffold and project structure
 - WPF app foundation with MVVM and dependency-injection wiring
 - Settings persistence with safe recovery from corrupted JSON

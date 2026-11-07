@@ -9,6 +9,7 @@ An unofficial, open-source Windows storefront inspired by [Orion Store](https://
 ## What's included
 
 - Dark Windows desktop storefront with search, categories, featured apps, and package details.
+- Custom Orion orbit icon in the app window, taskbar, and executable.
 - 606 free/open-source apps with license metadata and exact package IDs; the 500 new listings also include current manifest license links.
 - Install and update actions for every catalog entry. Orion asks for confirmation, then opens winget so you can review the package and approve its installer prompts. Orion does not silently run installers.
 - Catalog entries use real package IDs; fictional/demo entries without installable packages have been removed.
