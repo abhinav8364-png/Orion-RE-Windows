@@ -1,6 +1,7 @@
 // Copyright (C) 2026 Abhinav Krishnan and contributors
 // SPDX-License-Identifier: GPL-3.0-only
 using Orion.Windows;
+using Orion.Windows.Models;
 using Xunit;
 
 namespace Orion.Tests;
@@ -25,12 +26,13 @@ public sealed class CatalogRepositoryTests
     }
 
     [Fact]
-    public void LoadCatalog_Includes100AdditionalLicensedOpenSourceWingetApps()
+    public void LoadCatalog_Includes500AdditionalLicensedOpenSourceWingetApps()
     {
         var catalog = new CatalogRepository().LoadCatalog();
         var openSourceApps = catalog.Where(entry => entry.IsFreeOpenSource).ToList();
 
-        Assert.Equal(106, openSourceApps.Count);
+        Assert.Equal(606, openSourceApps.Count);
+        Assert.Equal(500, openSourceApps.Count(app => app.HasLicenseUrl));
         Assert.All(openSourceApps, app =>
         {
             Assert.False(string.IsNullOrWhiteSpace(app.PackageId));
@@ -39,6 +41,19 @@ public sealed class CatalogRepositoryTests
             Assert.True(app.CanManageWithWinget);
         });
         Assert.Equal(catalog.Count, catalog.Select(entry => entry.PackageId).Distinct(StringComparer.OrdinalIgnoreCase).Count());
+    }
+
+    [Theory]
+    [InlineData("https://example.org/license", true)]
+    [InlineData("http://example.org/license", true)]
+    [InlineData("javascript:alert(1)", false)]
+    [InlineData("file:///C:/license.txt", false)]
+    [InlineData("", false)]
+    public void AppCatalogEntry_HasLicenseUrlOnlyForWebAddresses(string licenseUrl, bool expected)
+    {
+        var entry = new AppCatalogEntry { LicenseUrl = licenseUrl };
+
+        Assert.Equal(expected, entry.HasLicenseUrl);
     }
 
     [Fact]

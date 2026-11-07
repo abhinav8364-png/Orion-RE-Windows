@@ -136,12 +136,12 @@ public sealed class CatalogRepository : ICatalogRepository
         {
             lineNumber++;
             var fields = line.Split('\t');
-            if (fields.Length != 6 || fields.Any(string.IsNullOrWhiteSpace))
+            if ((fields.Length != 6 && fields.Length != 7) || fields.Take(6).Any(string.IsNullOrWhiteSpace))
             {
                 throw new InvalidDataException($"Open-source catalog row {lineNumber} is malformed.");
             }
 
-            catalog.Add(new AppCatalogEntry
+            var entry = new AppCatalogEntry
             {
                 Name = fields[0],
                 PackageId = fields[1],
@@ -149,6 +149,7 @@ public sealed class CatalogRepository : ICatalogRepository
                 Category = fields[3],
                 License = fields[4],
                 Description = fields[5],
+                LicenseUrl = fields.Length == 7 ? fields[6] : string.Empty,
                 Version = "Latest from winget",
                 Rating = string.Empty,
                 FileSizeMb = 0,
@@ -156,7 +157,13 @@ public sealed class CatalogRepository : ICatalogRepository
                 Source = "winget",
                 CanManageWithWinget = true,
                 IsFreeOpenSource = true
-            });
+            };
+            if (fields.Length == 7 && !entry.HasLicenseUrl)
+            {
+                throw new InvalidDataException($"Open-source catalog row {lineNumber} has an invalid license source URL.");
+            }
+
+            catalog.Add(entry);
         }
 
         return catalog;

@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.2] - 2026-11-07
+
+### Added
+- Added 500 more Winget-backed FOSS apps with exact package IDs, current license metadata, and upstream license links.
+- Added a direct license-source link to catalog app details.
+- Included the exact .NET runtime and WPF third-party notices with release assets.
+
+### Changed
+- Expanded the licensed open-source catalog from 106 to 606 applications.
+- Updated the catalog provenance and release metadata for version 1.0.2.
+
 ## [1.0.1] - 2026-11-06
 
 ### Added

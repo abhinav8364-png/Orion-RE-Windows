@@ -1,6 +1,9 @@
 // Copyright (C) 2026 Abhinav Krishnan and contributors
 // SPDX-License-Identifier: GPL-3.0-only
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
+using System.Windows.Navigation;
 using Microsoft.Extensions.DependencyInjection;
 using Orion.Windows.Models;
 
@@ -25,6 +28,29 @@ public partial class MainWindow : Window
     private async void UpgradeSelected_Click(object sender, RoutedEventArgs e)
     {
         await ConfirmAndRunPackageActionAsync(upgrade: true);
+    }
+
+    private void LicenseLink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        if (!e.Uri.IsAbsoluteUri || (e.Uri.Scheme != Uri.UriSchemeHttp && e.Uri.Scheme != Uri.UriSchemeHttps))
+        {
+            return;
+        }
+
+        e.Handled = true;
+        try
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+        }
+        catch (Exception exception) when (exception is Win32Exception or InvalidOperationException)
+        {
+            MessageBox.Show(
+                this,
+                $"Could not open the license source: {exception.Message}",
+                "Unable to open license source",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
     }
 
     private async Task ConfirmAndRunPackageActionAsync(bool upgrade)

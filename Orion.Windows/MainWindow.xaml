@@ -13,6 +13,8 @@
     Foreground="{StaticResource OrionTextBrush}">
 
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
         <Style x:Key="CardStyle" TargetType="{x:Type Border}">
             <Setter Property="Background" Value="{StaticResource OrionSurfaceBrush}" />
             <Setter Property="BorderBrush" Value="{StaticResource OrionBorderBrush}" />
@@ -491,7 +493,15 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="License" Foreground="{StaticResource OrionSubtleTextBrush}" FontSize="12" />
-                                <TextBlock Grid.Column="1" Text="{Binding SelectedApp.License}" FontSize="12" />
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SelectedApp.License}" FontSize="12" />
+                                    <TextBlock Margin="8,0,0,0"
+                                               Visibility="{Binding SelectedApp.HasLicenseUrl, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Hyperlink NavigateUri="{Binding SelectedApp.LicenseUrl}"
+                                                   RequestNavigate="LicenseLink_RequestNavigate"
+                                                   Foreground="{StaticResource OrionAccentBrush}">View license</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
                             </Grid>
 
                             <Border Background="{StaticResource OrionSurfaceRaisedBrush}" CornerRadius="11" Padding="12" Margin="0,22,0,0">

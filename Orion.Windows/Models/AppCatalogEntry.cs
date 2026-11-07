@@ -19,6 +19,9 @@ public sealed class AppCatalogEntry
     public bool CanManageWithWinget { get; set; }
     public bool IsFreeOpenSource { get; set; }
     public string License { get; set; } = "Not listed";
+    public string LicenseUrl { get; set; } = string.Empty;
+    public bool HasLicenseUrl => Uri.TryCreate(LicenseUrl, UriKind.Absolute, out var uri)
+        && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
     public string RatingDisplay => string.IsNullOrWhiteSpace(Rating) || Rating == "—"
         ? "Not rated"
         : $"{Rating} / 5";
